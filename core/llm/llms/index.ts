@@ -51,6 +51,7 @@ import Ollama from "./Ollama";
 import OpenAI from "./OpenAI";
 import OpenRouter from "./OpenRouter";
 import ClawRouter from "./ClawRouter";
+import LmRouter from "./LmRouter";
 import OVHcloud from "./OVHcloud";
 import { Relace } from "./Relace";
 import Replicate from "./Replicate";
@@ -111,6 +112,7 @@ export const LLMClasses = [
   WatsonX,
   OpenRouter,
   ClawRouter,
+  LmRouter,
   Nvidia,
   Vllm,
   SambaNova,

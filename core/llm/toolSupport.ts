@@ -412,6 +412,40 @@ export const PROVIDER_TOOL_SUPPORT: Record<string, (model: string) => boolean> =
         !!lower.match(/\bo[1-9]\b/)
       );
     },
+    lmrouter: (model) => {
+      // LM Router routes to various providers, so we check common tool-supporting patterns
+      const lower = model.toLowerCase();
+
+      // router/* models are routing aliases - assume tool support
+      if (lower.startsWith("router/")) {
+        return true;
+      }
+
+      // Check for common tool-supporting model patterns (same as ClawRouter)
+      const toolSupportingPatterns = [
+        "claude",
+        "sonnet",
+        "opus",
+        "haiku",
+        "gemini",
+        "command-r",
+        "mistral",
+        "mixtral",
+        "llama-3.1",
+        "llama-3.2",
+        "llama-3.3",
+        "llama-4",
+        "qwen3",
+        "qwen-2.5",
+        "deepseek",
+      ];
+
+      return (
+        toolSupportingPatterns.some((pattern) => lower.includes(pattern)) ||
+        !!lower.match(/gpt-[4-9]/) ||
+        !!lower.match(/\bo[1-9]\b/)
+      );
+    },
     zAI: (model) => {
       const lower = model.toLowerCase();
       return !!lower.match(/^glm-[4-9]/);

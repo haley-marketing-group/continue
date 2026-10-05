@@ -14,6 +14,7 @@ import { InceptionApi } from "./apis/Inception.js";
 import { JinaApi } from "./apis/Jina.js";
 import { LlamastackApi } from "./apis/LlamaStack.js";
 import { MiniMaxApi } from "./apis/MiniMax.js";
+import { LmRouterApi } from "./apis/LmRouter.js";
 import { MockApi } from "./apis/Mock.js";
 import { MoonshotApi } from "./apis/Moonshot.js";
 import { OpenAIApi } from "./apis/OpenAI.js";
@@ -180,6 +181,8 @@ export function constructLlmApi(config: LLMConfig): BaseLlmApi | undefined {
       return new OpenRouterApi(config);
     case "clawrouter":
       return new ClawRouterApi(config);
+    case "lmrouter":
+      return new LmRouterApi(config);
     case "llama.cpp":
     case "llamafile":
       return openAICompatible("http://localhost:8000/", config);
@@ -243,3 +246,4 @@ export {
 export { isResponsesModel } from "./apis/openaiResponses.js";
 export { OPENROUTER_HEADERS } from "./apis/OpenRouter.js";
 export { extractBase64FromDataUrl, parseDataUrl } from "./util/url.js";
+export { LmRouterApi } from "./apis/LmRouter.js";
